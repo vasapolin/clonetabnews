@@ -23,10 +23,10 @@ async function findOneByUsername(username) {
     });
 
     if (results.rowCount === 0) {
-      throw new NotFoundError({
-        message: "O username informado não foi encontrado no sistema.",
-        action: "Verifique se o username está digitado corretamente.",
-      });
+      throw new NotFoundError(
+        "The provided username was not found in the system.",
+        "Please check if the username is typed correctly."
+      );
     }
 
     return results.rows[0];
@@ -122,10 +122,10 @@ async function validateUniqueUsername(username) {
   });
 
   if (results.rowCount > 0) {
-    throw new ValidationError({
-      message: "O username informado já está sendo utilizado.",
-      action: "Utilize outro username para realizar esta operação.",
-    });
+    throw new ValidationError(
+      "The provided username is already in use.",
+      "Please use another username to perform this operation."
+    );
   }
 }
 
@@ -143,10 +143,10 @@ async function validateUniqueEmail(email) {
   });
 
   if (results.rowCount > 0) {
-    throw new ValidationError({
-      message: "O email informado já está sendo utilizado.",
-      action: "Utilize outro email para realizar esta operação.",
-    });
+    throw new ValidationError(
+      "The provided email is already in use.",
+      "Please use another email to perform this operation."
+    );
   }
 }
 
